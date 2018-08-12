@@ -36,6 +36,9 @@ There are integration as well as unit tests written.
 # run tests
 AWS_ACCESS_KEY_ID=<aws-access-key-id> AWS_SECRET_ACCESS_KEY=<aws-secret-access-key> AWS_REGION=us-east-1 AWS_BUCKET=ts-engineering-test MONGO_URL=<mongo-url> MONGO_DB_NAME=dblabs MONGO_COLLECTION=assets sh check.sh
 
+# If you get any error regarding permissions, give executable permissions to check.sh & then run above command.
+chmod +x check.sh
+
 # check.sh checks for 4 aspects - formatting, correctness, linting & tests
 # it might look slow as it must be connecting to remote database & services
 ```
@@ -46,6 +49,9 @@ go install
 
 # run go-uploader directly (as $GOPATH/bin is already added in $PATH)
 AWS_ACCESS_KEY_ID=<aws-access-key-id> AWS_SECRET_ACCESS_KEY=<aws-secret-access-key> AWS_REGION=us-east-1 AWS_BUCKET=ts-engineering-test MONGO_URL=<mongo-url> MONGO_DB_NAME=dblabs MONGO_COLLECTION=assets go-uploader
+
+# Check if server is running by opening following url, you should get response as "pong"
+http://localhost:8489/ping
 ```
 ### Call APIs
 You can use any web client to call APIs (such as `Postman`).  
@@ -67,7 +73,7 @@ curl -X PUT 'http://localhost:8489/asset/<asset-id>' -H 'Content-Type: applicati
 curl -X GET 'http://localhost:8489/asset/<asset-id>?timeout=3600'
 
 # download asset using returned download_url 
-# make sure the extension is same that of the uploaded asset (.jpg)
+# make sure the extension is same that of the uploaded asset (.jpg) Also do not miss the quotes.  
 curl "<signed-download-url>" --output sample.jpg
 ```
 

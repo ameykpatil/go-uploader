@@ -72,6 +72,9 @@ curl -X PUT 'http://localhost:8489/asset/<asset-id>' -H 'Content-Type: applicati
 # get the download_url for the asset given asset-id
 curl -X GET 'http://localhost:8489/asset/<asset-id>?timeout=3600'
 
+# convert to utf-8 if there are any unicode characters over here
+https://play.golang.org/p/-f5LaNmsCFg
+
 # download asset using returned download_url 
 # make sure the extension is same that of the uploaded asset (.jpg) Also do not miss the quotes.  
 curl "<signed-download-url>" --output sample.jpg
